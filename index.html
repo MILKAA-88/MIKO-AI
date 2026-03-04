@@ -2,8 +2,9 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>MIKO AI - Face Detection</title>
+<title>MIKO AI</title>
 <script defer src="https://cdn.jsdelivr.net/npm/face-api.js"></script>
+<link rel="stylesheet" href="styles.css">
 </head>
 
 <body style="background:black;color:white;text-align:center;">
@@ -21,7 +22,7 @@ const canvas = document.getElementById("overlay");
 
 async function start() {
 
-  // ⚠️ Mets les modèles dans un dossier /models
+
   await faceapi.nets.tinyFaceDetector.loadFromUri("models");
 
   const stream = await navigator.mediaDevices.getUserMedia({ video: true });
@@ -56,7 +57,11 @@ video.addEventListener("play", () => {
 });
 
 start();
-</script>
 
-</body>
+video.addEventListener("loadedmetadata", () => {
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+});
+</script>
+$</body>
 </html>
