@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>MIKO AI</title>
+<script defer src="https://cdn.jsdelivr.net/npm/face-api.js"></script>
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body style="background:black;color:white;text-align:center;">
+
+<h1>MIKO AI</h1>
+
+<div style="position:relative;display:inline-block;">
+  <video id="camera" width="500" autoplay muted></video>
+  <canvas id="overlay" style="position:absolute;top:0;left:0;"></canvas>
+</div>
+
+<script>
+const video = document.getElementById("camera");
+const canvas = document.getElementById("overlay");
+
+async function start() {
+
+
+  await faceapi.nets.tinyFaceDetector.loadFromUri("models");
+
+  const stream = await navigator.mediaDevices.getUserMedia({ video: true });
+  video.srcObject = stream;
+}
+
+video.addEventListener("play", () => {
+  const displaySize = { width: video.width, height: video.height };
+  canvas.width = video.width;
+  canvas.height = video.height;
+
+  setInterval(async () => {
+
+    const detections = await faceapi.detectAllFaces(
+      video,
+      new faceapi.TinyFaceDetectorOptions()
+    );
+
+    const resized = faceapi.resizeResults(detections, displaySize);
+
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    resized.forEach(result => {
+      const { x, y, width, height } = result.box;
+      ctx.strokeStyle = "lime";
+      ctx.lineWidth = 3;
+      ctx.strokeRect(x, y, width, height);
+    });
+
+  }, 100);
+});
+
+start();
+
+video.addEventListener("loadedmetadata", () => {
+  canvas.width = video.videoWidth;
+  canvas.height = video.videoHeight;
+});
+</script>
+</body>
+</html>

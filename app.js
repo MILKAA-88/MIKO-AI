@@ -1,0 +1,1 @@
+const fluxvidéo = document.getElementById("video")
