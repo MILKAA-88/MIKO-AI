@@ -3,22 +3,22 @@ from deepface import DeepFace
 import time
 
 # ── Configuration ──────────────────────────────────────────
-CAMERA_INDEX = 0        # 0 = webcam principale
+CAMERA_INDEX = 0       # 0 = webcam principale
 FRAME_SKIP   = 2        # Analyse 1 frame sur N (plus N est grand = plus de FPS)
 SCALE        = 0.5      # Réduit la frame avant analyse (0.5 = moitié de la résolution)
 BACKEND      = "opencv" # Le plus rapide : opencv > ssd > mtcnn > retinaface
 # ───────────────────────────────────────────────────────────
 
-cap = cv2.VideoCapture(CAMERA_INDEX)
+cap = cv2.VideoCapture(6)
 cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
 frame_count = 0
-last_faces  = []  # Garde le dernier résultat affiché entre les frames skippées
+last_faces  = []  # Il faut garder le dernier résultat affiché entre les frames skippées
 fps         = 0
 prev_time   = time.time()
 
-print("Appuie sur 'q' pour quitter.")
+print("Appuie sur 'q' pour quitter bg, tié la famille! Et un tigre.")
 
 while True:
     ret, frame = cap.read()
