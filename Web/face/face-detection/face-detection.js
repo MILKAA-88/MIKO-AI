@@ -18,7 +18,7 @@ async function chargerModeles() {
   demarrerDetection();
 }
 
-// ✅ Définie AVANT d'être appelée
+// Définie AVANT d'être appelée
 function demarrerDetection() {
   setInterval(async () => {
     const detections = await faceapi
