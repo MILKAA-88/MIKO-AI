@@ -5,9 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>MIKO AI</title>
   <link rel="icon" href="data:;base64,iVBORw0KGgo=" />
+  <link rel="stylesheet" href="/styles.css">
   <script src="https://cdn.jsdelivr.net/npm/face-api.js@0.22.2/dist/face-api.min.js"></script>
   <style>
-    body { background: black; color: white; text-align: center; font-family: sans-serif; }
+    body { background: rgb(0, 0, 0); color: white; text-align: center; font-family: sans-serif; }
     video { border: 2px solid white; margin-top: 20px; width: 640px; height: 480px; border-radius: 5px; }
   </style>
 </head>
@@ -17,8 +18,8 @@
   <div style="position: relative; display: inline-block;">
   <video id="video" autoplay playsinline></video>
   <canvas id="overlay"></canvas>
-</div>
-<p id="status"> Latence au démarage...</p>
+<p id="info"> Latence au démarage...</p>
   <script src="/Web/face/face-detection/face-detection.js"></script>
+  <script type="module" src="/Web/voice/voice.js"></script>
 </body>
 </html>

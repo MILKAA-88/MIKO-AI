@@ -18,7 +18,7 @@ def record():
 thread = threading.Thread(target=record)
 thread.start()
 
-print("Enregistrement en cours... Appuie sur Entrée pour arrêter.")
+print("Recording in progress... Press Enter for stop.")
 input()
 
 recording = False
@@ -28,6 +28,6 @@ thread.join()
 audio = np.concatenate(frames, axis=0)
 write("temp_audio.wav", SAMPLE_RATE, audio)
 
-model = whisper.load_model("base")
+model = whisper.load_model("small") 
 result = model.transcribe("temp_audio.wav", language="fr")
 print("You said:", result["text"])
