@@ -2,8 +2,6 @@ Liste des outils que MIKO AI utilise :
 
 - Whisper pour la retranscription vocal (https://openai.com/fr-FR/index/whisper/)
 
-- Face-api.js pour les modèles de visages (https://github.comjustadudewhohacks/face-api.js.)
-
 - DeepFace pour la reconnaisance facial (https://github.com/serengil/deepface.git)
  
 Plus d'informations à l'avenir.
