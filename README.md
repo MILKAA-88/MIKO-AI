@@ -4,6 +4,6 @@ Liste des outils que MIKO AI utilise :
 
 - Face-api.js pour les modèles de visages (disponible dans le dossier "models" puis dans "weights". Pour le web. https://github.comjustadudewhohacks/face-api.js.)
 
-- DeepFace pour la recconaisance facial (https://github.com/serengil/deepface.git)
+- DeepFace pour la reconnaisance facial (https://github.com/serengil/deepface.git)
  
 Plus d'informations à l'avenir.
