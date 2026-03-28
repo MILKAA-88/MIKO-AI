@@ -7,9 +7,5 @@ Liste des outils que MIKO AI utilise :
 - DeepFace pour la recconaisance facial (pour Python. https://github.com/serengil/deepface.git)
 
 - Pyttsx3 (pip install pyttsx3) pour la voix de l'ia.
-
-- 
-
-MIKO AI est un assitant virtuel. 
-
-Projet solitaire.
+ 
+Plus d'informations à l'avenir.
