@@ -4,7 +4,7 @@ Liste des outils que MIKO AI utilise :
 
 - DeepFace pour la reconnaisance facial (https://github.com/serengil/deepface.git)
 
-Le lien du repo est devenue un 404 Github, alors, voici la citation venant du dossier "deepface" dans du fichier CITATION.cff
+Le lien du repo est devenue un 404 Github, alors, voici la citation venant du dossier "deepface" dans le fichier CITATION.cff
 
 cff-version: 1.2.0
 message: "Please cite the following publication if DeepFace helps your research."
