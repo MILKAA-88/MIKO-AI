@@ -1,10 +1,10 @@
-Liste des outils que MIKO AI utilise : 
+Liste des outils que MIKO AI utilise (Remerciement) : 
 
-- Whisper pour la retranscription vocal (https://openai.com/fr-FR/index/whisper/)
+- Whisper pour la retranscription vocal (https://openai.com/fr-FR/index/whisper/).
 
-- DeepFace pour la reconnaisance facial (https://github.com/serengil/deepface.git)
+- DeepFace pour la reconnaisance facial (https://github.com/serengil/deepface.git).
 
-Le lien du repo est devenue un 404 Github, alors, voici la citation venant du dossier "deepface" dans le fichier CITATION.cff
+Le lien du repo est devenue un 404 Github, alors, voici la citation venant du dossier "deepface" dans le fichier CITATION.cff.
 
 cff-version: 1.2.0
 message: "Please cite the following publication if DeepFace helps your research."
@@ -36,6 +36,10 @@ preferred-citation:
   publisher: "Gazi University"
 
 
-- La LLM est TinyLlama-1.1B-Chat-v1.0 (https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0)
+- La LLM est TinyLlama-1.1B-Chat-v1.0 (https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0).
+
+- gTTS (Google Text-to-Speech) — Pour les voix (https://github.com/pndurette/gTTS).
+
+- mpv : Lecteur multimédia open-source installé pour la compatibilité avec certaines bibliothèques audio (https://mpv.io/).
 
 Plus d'informations à l'avenir.
