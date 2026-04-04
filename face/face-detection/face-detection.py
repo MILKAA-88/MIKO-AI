@@ -17,7 +17,7 @@ last_faces  = []  # Il faut garder le dernier résultat affiché entre les frame
 fps         = 0
 prev_time   = time.time()
 
-print("Appuie sur 'q' pour quitter.")
+print("Press 'e' to leave.")
 
 while True:
     ret, frame = cap.read()
@@ -55,7 +55,7 @@ while True:
                 last_faces.append((x, y, w, h, conf))
 
         except Exception as e:
-            print(f"Erreur détection : {e}")
+            print(f"Error detection : {e}")
             last_faces = []
 
     # ── Affichage des rectangles ───────────────────────────
@@ -68,7 +68,7 @@ while True:
     cv2.putText(frame, f"FPS: {fps:.1f}", (10, 30),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 200, 255), 2)
 
-    cv2.imshow("MIKO-AI | Detection visage", frame)
+    cv2.imshow("MIKO-AI | Detection face", frame)
 
     if cv2.waitKey(1) & 0xFF == ord('q'):
         break
