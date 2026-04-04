@@ -6,8 +6,6 @@ Liste des outils que MIKO AI utilise (Remerciement) :
 
 Le lien du repo est devenue un 404 Github, alors, voici la citation venant du dossier "deepface" dans le fichier CITATION.cff.
 
-cff-version: 1.2.0
-message: "Please cite the following publication if DeepFace helps your research."
 title: "DeepFace: A Lightweight Face Recognition Framework for Python"
 authors:
   - family-names: Serengil
