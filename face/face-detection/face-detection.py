@@ -55,7 +55,7 @@ while True:
                 last_faces.append((x, y, w, h, conf))
 
         except Exception as e:
-            print(f"Error detection : {e}")
+            print(f"Error detection: {e}")
             last_faces = []
 
     # ── Affichage des rectangles ───────────────────────────
