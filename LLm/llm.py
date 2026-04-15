@@ -12,7 +12,7 @@ class TinyLlamaWrapper:
 
     def generate_response(self, prompt, max_new_tokens=200, temperature=0.7):
         messages = [
-            {"role": "system", "content": "Tu es MIKO-AI, un assistant utile. Réponds toujours en français."},
+            {"role": "system", "content": "Tu es MIKO-AI, un assistant utile. Réponds toujours en français. Sois poli."},
             {"role": "user", "content": prompt}
         ]
 
