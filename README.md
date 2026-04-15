@@ -1,6 +1,6 @@
 Liste des outils que MIKO AI utilise (Remerciement) : 
 
-- Whisper pour la retranscription vocal (https://openai.com/fr-FR/index/whisper/ or https://github.com/openai/whisper).
+- Whisper pour la retranscription vocal (https://openai.com/fr-FR/index/whisper/ ou https://github.com/openai/whisper).
 
 - DeepFace pour la reconnaisance facial (https://github.com/serengil/deepface.git).
 
