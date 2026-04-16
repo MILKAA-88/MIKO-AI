@@ -13,7 +13,7 @@ cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
 cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
 frame_count = 0
-last_faces  = []  # Il faut garder le dernier résultat affiché entre les frames skippées
+last_faces  = [] 
 fps         = 0
 prev_time   = time.time()
 
