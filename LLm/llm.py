@@ -45,7 +45,7 @@ class TinyLlamaWrapper:
 if __name__ == "__main__":
     llm = TinyLlamaWrapper()
     while True:
-        user_input = input("Toi : ")
+        user_input = input("You: ")
         if user_input.lower() in ["quit", "exit", "bye"]:
             break
         response = llm.generate_response(user_input)

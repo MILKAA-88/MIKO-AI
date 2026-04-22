@@ -1,2 +1,6 @@
 *.wav
 *.mp3
+*.vscode
+*.venv
+*.jpg
+*.mp4

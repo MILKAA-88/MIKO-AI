@@ -51,7 +51,7 @@ def record_until_silence():
     finally:
         stream.stop_stream()
         stream.close()
-        # Récupérer la taille AVANT de terminer PyAudio
+       
         sample_width = audio.get_sample_size(pyaudio.paInt16)
         audio.terminate()
 
@@ -72,7 +72,7 @@ def record_until_silence():
 def transcribe_audio(audio_file):
 
     if not audio_file or not os.path.exists(audio_file):
-        print(f"[Transcription] Fichier introuvable : {audio_file}")
+        print(f"[Transcription] file not found: {audio_file}")
         return "", "fr"
 
     result = model.transcribe(
