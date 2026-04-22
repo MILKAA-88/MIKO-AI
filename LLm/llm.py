@@ -4,11 +4,11 @@ import os
 
 class TinyLlamaWrapper:
     def __init__(self, model_name="TinyLlama/TinyLlama-1.1B-Chat-v1.0"):
-        print("Chargement du tokenizer...")
+        print("Loading of tokenizer...")
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
-        print("Chargement du modèle...")
+        print("Loading of the model...")
         self.model = AutoModelForCausalLM.from_pretrained(model_name)
-        print("Modèle prêt !")
+        print(" Model ready!")
 
     def generate_response(self, prompt, max_new_tokens=200, temperature=0.7):
         messages = [
