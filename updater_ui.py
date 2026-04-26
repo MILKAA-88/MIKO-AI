@@ -14,15 +14,14 @@ BRANCH = "main"
 VERSION_FILE = ".miko_version"
 CHECK_INTERVAL = 20
 
-
-BG        = "#0d0f1a"
-BG2       = "#151728"
-ACCENT    = "#4f8ef7"
-GREEN     = "#3ddc84"
-YELLOW    = "#f7c948"
-RED       = "#f75f5f"
-TEXT      = "#cdd6f4"
-TEXT_DIM  = "#585b70"
+BG       = "#0d0f1a"
+BG2      = "#151728"
+ACCENT   = "#4f8ef7"
+GREEN    = "#3ddc84"
+YELLOW   = "#f7c948"
+RED      = "#f75f5f"
+TEXT     = "#cdd6f4"
+TEXT_DIM = "#585b70"
 
 class UpdaterWindow:
     def __init__(self):
@@ -31,12 +30,10 @@ class UpdaterWindow:
         self.root.geometry("800x520")
         self.root.configure(bg=BG)
         self.root.resizable(False, False)
-
         self._build_ui()
         self._updating = False
 
     def _build_ui(self):
-        # ── Header ──
         header = tk.Frame(self.root, bg=BG2, height=48)
         header.pack(fill="x")
         header.pack_propagate(False)
@@ -50,7 +47,6 @@ class UpdaterWindow:
                                      bg=BG2, fg=GREEN)
         self.status_label.pack(side="right", padx=16)
 
-        # ── Log zone ──
         self.log = scrolledtext.ScrolledText(
             self.root,
             font=("Consolas", 10),
@@ -63,7 +59,6 @@ class UpdaterWindow:
         )
         self.log.pack(fill="both", expand=True, padx=0, pady=0)
 
-      
         self.log.tag_config("info",    foreground=TEXT)
         self.log.tag_config("success", foreground=GREEN)
         self.log.tag_config("warning", foreground=YELLOW)
@@ -71,7 +66,6 @@ class UpdaterWindow:
         self.log.tag_config("dim",     foreground=TEXT_DIM)
         self.log.tag_config("accent",  foreground=ACCENT)
 
-        
         prog_frame = tk.Frame(self.root, bg=BG2, height=32)
         prog_frame.pack(fill="x")
         prog_frame.pack_propagate(False)
@@ -82,7 +76,6 @@ class UpdaterWindow:
         self._prog_rect = None
         self._anim_pos  = 0
 
-    # ─── Logging ────────────────────────────────────────
     def log_print(self, message: str, level: str = "info"):
         ts = datetime.now().strftime("%H:%M:%S")
         self.log.config(state="normal")
@@ -91,7 +84,6 @@ class UpdaterWindow:
         self.log.see("end")
         self.log.config(state="disabled")
 
-    
     def _animate_progress(self):
         if not self._updating:
             self.progress_bar.delete("all")
@@ -102,11 +94,8 @@ class UpdaterWindow:
         x1 = self._anim_pos - bw
         x2 = self._anim_pos
         self.progress_bar.delete("all")
-      
         self.progress_bar.create_rectangle(0, 1, w, 3, fill=BG, outline="")
-        
-        self.progress_bar.create_rectangle(x1, 0, x2, 4,
-                                            fill=ACCENT, outline="")
+        self.progress_bar.create_rectangle(x1, 0, x2, 4, fill=ACCENT, outline="")
         self.root.after(16, self._animate_progress)
 
     def start_progress(self):
@@ -118,16 +107,13 @@ class UpdaterWindow:
     def stop_progress(self, success: bool = True):
         self._updating = False
         if success:
-            self.status_label.config(text="● Update", fg=GREEN)
-          
+            self.status_label.config(text="● Updated", fg=GREEN)
             w = self.progress_bar.winfo_width()
             self.progress_bar.delete("all")
-            self.progress_bar.create_rectangle(0, 0, w, 4,
-                                                fill=GREEN, outline="")
+            self.progress_bar.create_rectangle(0, 0, w, 4, fill=GREEN, outline="")
         else:
             self.status_label.config(text="● Error", fg=RED)
 
-   
     def get_remote_sha(self):
         url = f"https://api.github.com/repos/{GITHUB_USER}/{GITHUB_REPO}/commits/{BRANCH}"
         try:
@@ -135,7 +121,7 @@ class UpdaterWindow:
             r.raise_for_status()
             return r.json()["sha"]
         except Exception as e:
-            self.log_print(f"Unable to join/contact GitHub: {e}", "error")
+            self.log_print(f"Unable to contact GitHub: {e}", "error")
             return None
 
     def get_local_sha(self):
@@ -169,13 +155,13 @@ class UpdaterWindow:
             local  = self.get_local_sha()
 
             if remote is None:
-                self.log_print("Retry in 20s. Warning! This value may be subject to modification. If you are the dev, please check the 'updater_ui.py' code. Or just verify if got a change in the name of repo/user/branch.", "warning")
+                self.log_print("Retry in 20s. If you are the dev, check 'updater_ui.py' or verify repo/user/branch.", "warning")
             elif remote == local:
-                self.log_print(
-                    f"Any updates. (SHA: {remote[:7]})", "success")
+                self.log_print(f"No updates. (SHA: {remote[:7]})", "success")
+                self.root.after(7000, self.root.destroy)
+                return
             else:
-                self.log_print(
-                    f"New commit detected! ({remote[:7]})", "warning")
+                self.log_print(f"New commit detected! ({remote[:7]})", "warning")
                 self.root.after(0, self.start_progress)
                 ok = self.pull_updates()
                 if ok:
@@ -185,7 +171,7 @@ class UpdaterWindow:
                     time.sleep(2)
                     self.log_print("Reboot of MIKO-AI...", "accent")
                     time.sleep(1)
-                    os.execv(sys.executable, [sys.executable] + sys.argv)
+                    os.execv(sys.executable, [sys.executable] + sys.argv + ["--skip-boot"])
                 else:
                     self.log_print("Update failure.", "error")
                     self.root.after(0, lambda: self.stop_progress(False))
@@ -193,12 +179,15 @@ class UpdaterWindow:
             time.sleep(CHECK_INTERVAL)
 
     def run(self):
-        self.log_print("MIKO-AI Updater starter.", "accent")
+        self.log_print("MIKO-AI Updater started.", "accent")
         self.log_print(f"Repo watched: {GITHUB_USER}/{GITHUB_REPO} ({BRANCH})", "dim")
         t = threading.Thread(target=self.update_loop, daemon=True)
         t.start()
         self.root.mainloop()
 
+
+def show_updater():
+    UpdaterWindow().run()
 
 if __name__ == "__main__":
     UpdaterWindow().run()
