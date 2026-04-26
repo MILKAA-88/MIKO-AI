@@ -1,6 +1,8 @@
 *.wav
 *.mp3
-*.vscode
-*.venv
 *.jpg
 *.mp4
+__pycache__/
+*.pyc
+.vscode/
+.venv/

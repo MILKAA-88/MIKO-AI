@@ -1,4 +1,4 @@
-List of tools that MIKO AI uses (Thanks): 
+List of tools that MIKO AI uses (Thanks btw): 
 
 - Whisper for voice transcription (https://openai.com/fr-FR/index/whisper/ or https://github.com/openai/whisper).
 
@@ -9,5 +9,10 @@ List of tools that MIKO AI uses (Thanks):
 - gTTS (Google Text-to-Speech) — For voices (https://github.com/pndurette/gTTS).
 
 - mpv: Open-source media player installed for compatibility with certain audio libraries (https://mpv.io/).
+
+- Tkinter for update permanent - [Tkinter](https://docs.python.org/3/library/tkinter.html) — Python Software Foundation (PSF).
+
+- DateTime to manipulate dates and times - [datetime](https://docs.python.org/3/library/datetime.html) — Python Software Foundation (PSF).
+- Request  For GitHub API calls - [requests](https://github.com/psf/requests).
 
 More information in the future.

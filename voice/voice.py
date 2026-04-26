@@ -46,7 +46,7 @@ def record_until_silence():
                 silence_chunks = 0
 
             if silence_chunks >= max_silence_chunks:
-                print("Silence détecté, arrêt de l'enregistrement.")
+                print("Silence detected, recording stopped.")
                 break
     finally:
         stream.stop_stream()
@@ -55,7 +55,7 @@ def record_until_silence():
         sample_width = audio.get_sample_size(pyaudio.paInt16)
         audio.terminate()
 
-    # Écrire dans un fichier temporaire
+    # Write in a file tempory 
     tmp = tempfile.NamedTemporaryFile(suffix=".wav", delete=False)
     output_file = tmp.name
     tmp.close()
