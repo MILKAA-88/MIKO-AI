@@ -28,7 +28,7 @@ class UpdaterWindow:
     def __init__(self):
         self.root = tk.Tk()
         self.root.title("MIKO-AI — Updater")
-        self.root.geometry("600x420")
+        self.root.geometry("800x520")
         self.root.configure(bg=BG)
         self.root.resizable(False, False)
 
@@ -63,7 +63,7 @@ class UpdaterWindow:
         )
         self.log.pack(fill="both", expand=True, padx=0, pady=0)
 
-        # Tags couleur pour les logs
+      
         self.log.tag_config("info",    foreground=TEXT)
         self.log.tag_config("success", foreground=GREEN)
         self.log.tag_config("warning", foreground=YELLOW)
@@ -102,9 +102,9 @@ class UpdaterWindow:
         x1 = self._anim_pos - bw
         x2 = self._anim_pos
         self.progress_bar.delete("all")
-        # Rail
+      
         self.progress_bar.create_rectangle(0, 1, w, 3, fill=BG, outline="")
-        # Curseur animé
+        
         self.progress_bar.create_rectangle(x1, 0, x2, 4,
                                             fill=ACCENT, outline="")
         self.root.after(16, self._animate_progress)
@@ -119,7 +119,7 @@ class UpdaterWindow:
         self._updating = False
         if success:
             self.status_label.config(text="● Update", fg=GREEN)
-            # Barre verte fixe
+          
             w = self.progress_bar.winfo_width()
             self.progress_bar.delete("all")
             self.progress_bar.create_rectangle(0, 0, w, 4,
@@ -127,7 +127,7 @@ class UpdaterWindow:
         else:
             self.status_label.config(text="● Error", fg=RED)
 
-    # ─── Logique de mise à jour ──────────────────────────
+   
     def get_remote_sha(self):
         url = f"https://api.github.com/repos/{GITHUB_USER}/{GITHUB_REPO}/commits/{BRANCH}"
         try:
@@ -169,7 +169,7 @@ class UpdaterWindow:
             local  = self.get_local_sha()
 
             if remote is None:
-                self.log_print("Retry in 20s. Warning! This value may be subject to modification. If you are the dev, please check the 'updater_ui.py' code.", "warning")
+                self.log_print("Retry in 20s. Warning! This value may be subject to modification. If you are the dev, please check the 'updater_ui.py' code. Or just verify if got a change in the name of repo/user/branch.", "warning")
             elif remote == local:
                 self.log_print(
                     f"Any updates. (SHA: {remote[:7]})", "success")
