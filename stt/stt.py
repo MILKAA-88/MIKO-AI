@@ -5,8 +5,8 @@ import pyaudio
 import wave
 import numpy as np
 import tempfile
-import subprocess
 import time
+import pygame
 
 
 RATE = 16000
@@ -98,10 +98,8 @@ def transcribe_audio(audio_file):
 
 
 def text_to_speech(text, language="fr"):
-
     if not text:
         return ""
-
 
     tmp = tempfile.NamedTemporaryFile(suffix=".mp3", delete=False)
     output_path = tmp.name
@@ -110,15 +108,13 @@ def text_to_speech(text, language="fr"):
     tts = gTTS(text=text, lang=language, slow=False)
     tts.save(output_path)
 
+    pygame.mixer.init()
+    pygame.mixer.music.load(output_path)
+    pygame.mixer.music.play()
+    while pygame.mixer.music.get_busy():
+        time.sleep(0.1)
+    pygame.mixer.music.unload()
 
-    proc = subprocess.Popen(
-        ["start", "/wait", "", output_path],
-        shell=True
-    )
-    proc.wait()
-
-
-    time.sleep(0.5)
     try:
         os.remove(output_path)
     except OSError:

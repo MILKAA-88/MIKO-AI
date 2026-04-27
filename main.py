@@ -1,8 +1,8 @@
 import threading
 import sys
-from start import show_boot_screen
-from updater_ui import show_updater
-from content import show_content
+from display.start import show_boot_screen
+from display.updater_ui import show_updater
+from display.content import show_content
 
 def import_modules():
     pass  
@@ -18,4 +18,4 @@ if __name__ == "__main__":
 
     thread.join()
     show_updater()
-    show_content() 
+    show_content()

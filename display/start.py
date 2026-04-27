@@ -2,7 +2,7 @@ from tkinter import *
 
 def show_boot_screen():
     root = Tk()
-    root.title("None")
+    root.title("MIKO AI")
     root.geometry("1080x720")
     root.minsize(480, 360)
     root.config(background="#000000")
@@ -13,7 +13,7 @@ def show_boot_screen():
     def next1():
         label_title.config(text="I'm coming, just wait one second buddy.")
     def next2():
-        label_title.config(text="Loading..")
+        label_title.config(text="Loading...")
     def next3():
         label_title.config(text="Initializing Systems...")
     def next4():
@@ -21,7 +21,7 @@ def show_boot_screen():
     def next5():
         label_title.config(text="...")
     def next6():
-        label_title.config(text="Almost ready..")
+        label_title.config(text="Almost ready...")
     def next7():
         label_title.config(text="I'm gonna search if a new update is available.")
         root.after(10000, root.destroy)
