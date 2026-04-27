@@ -18,3 +18,4 @@ if __name__ == "__main__":
 
     thread.join()
     show_updater()
+    show_content() 
