@@ -7,11 +7,11 @@ def show_boot_screen():
     root.minsize(480, 360)
     root.config(background="#000000")
 
-    label_title = Label(root, text="MIKO AI", font=("Times New Roman", 40), fg="white", bg="black")
+    label_title = Label(root, text="MIKO AI", font=("Open Sans", 50), fg="white", bg="orange")
     label_title.pack(expand=True)
 
     def next1():
-        label_title.config(text="I'm coming, just wait one second buddy.")
+        label_title.config(text="MIKO AI")
     def next2():
         label_title.config(text="Loading...")
     def next3():
@@ -23,7 +23,7 @@ def show_boot_screen():
     def next6():
         label_title.config(text="Almost ready...")
     def next7():
-        label_title.config(text="I got install by 6.")
+        label_title.config(text="Please wait :)")
         root.after(10000, root.destroy)
 
     root.after(1000,  next1)

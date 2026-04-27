@@ -44,11 +44,11 @@ class LoadingWindow:
         self._build_ui()
 
     def _build_ui(self):
-        tk.Label(self.root, text="MIKO-AI",
+        tk.Label(self.root, text="MIKO AI",
                  font=("Helvetica", 32, "bold"),
                  bg=BG, fg=TEXT).pack(pady=(40, 4))
 
-        tk.Label(self.root, text="Loading modules for MIKO AI...",
+        tk.Label(self.root, text="Install all the modules required for MIKO AI. If any issues occur, please contact the admin.",
                  font=("Helvetica", 10),
                  bg=BG, fg=DIM).pack()
 
@@ -127,7 +127,7 @@ class LoadingWindow:
                         if line.strip():
                             self.log_print(line, "dim")
 
-                # stderr (🔥 important)
+                
                 if result.stderr:
                     self.log_print("---- PIP ERROR ----", "error")
                     for line in result.stderr.splitlines():
@@ -162,10 +162,10 @@ class LoadingWindow:
             self.root.after(0, lambda p=progress: self.set_progress(p))
 
         if success == total:
-            self.log_print("All modules ready 🚀", "success")
+            self.log_print("All modules are ready/installed, bye!", "success")
             self.root.after(12000, self.root.destroy)
         else:
-            self.log_print(f"{total - success} module(s) failed.", "error")
+            self.log_print(f"{total - success} module(s) failed. Contact the admin.", "error")
             self.root.after(15000, self.root.destroy)
 
     def run(self):
