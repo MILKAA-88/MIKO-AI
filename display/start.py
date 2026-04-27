@@ -23,7 +23,7 @@ def show_boot_screen():
     def next6():
         label_title.config(text="Almost ready...")
     def next7():
-        label_title.config(text="I'm gonna search if a new update is available.")
+        label_title.config(text="I got install by 6.")
         root.after(10000, root.destroy)
 
     root.after(1000,  next1)
@@ -35,3 +35,5 @@ def show_boot_screen():
     root.after(13000, next7)
 
     root.mainloop()
+
+   
