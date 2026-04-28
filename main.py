@@ -1,4 +1,3 @@
-# main.py
 import sys
 from display.start import show_boot_screen
 from display.loading import show_loading

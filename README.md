@@ -4,7 +4,7 @@ List of tools that MIKO AI uses (Thanks btw):
 
 - DeepFace for facial recognition (https://github.com/serengil/deepface.git).
 
-- The LLM is TinyLlama-1.1B-Chat-v1.0 (https://huggingface.co/TinyLlama/TinyLa-1.1B-Chat-v1.0).
+- The LLM is TinyLlama-1.1B-Chat-v1.0 (https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0).
 
 - gTTS (Google Text-to-Speech) — For voices (https://github.com/pndurette/gTTS).
 

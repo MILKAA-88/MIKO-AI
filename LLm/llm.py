@@ -1,4 +1,4 @@
-# llm.py - Handles LLM inference.
+# It's tts too btw.
 from transformers import AutoModelForCausalLM, AutoTokenizer
 
 class TinyLlamaWrapper:
