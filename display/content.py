@@ -50,7 +50,7 @@ def show_content(shutdown_event=None):
                 play_video()
         next_frame()
 
-    # ── Boucle STT → LLM → TTS (thread séparé) ───────────────
+    
     def voice_loop():
         while True:
             if shutdown_event and shutdown_event.is_set():
@@ -71,12 +71,12 @@ def show_content(shutdown_event=None):
             status_label.config(text=f"You said: {text}")
             print(f"[STT] {text}")
 
-            # 3. LLM
-            status_label.config(text="MIKO thoughtful...")
+            
+            status_label.config(text="MIKO AI thoughtful...")
             response = llm.generate_response(text)
             print(f"[LLM] {response}")
 
-            # 4. TTS
+            
             status_label.config(text=f"MIKO AI: {response}")
             text_to_speech(response, language=lang)
 

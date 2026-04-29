@@ -31,8 +31,8 @@ def show_boot_screen():
     root.after(5000,  next3)
     root.after(7000,  next4)
     root.after(9000,  next5)
-    root.after(11000, next6)
-    root.after(13000, next7)
+    root.after(10000, next6)
+    root.after(12000, next7)
 
     root.mainloop()
 

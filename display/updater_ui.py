@@ -12,7 +12,6 @@ GITHUB_USER = "MILKAA-88"
 GITHUB_REPO = "MIKO-AI"
 BRANCH = "main"
 VERSION_FILE = ".miko_version"
-CHECK_INTERVAL = 20
 
 BG       = "#0d0f1a"
 BG2      = "#151728"
@@ -37,16 +36,13 @@ class UpdaterWindow:
         header = tk.Frame(self.root, bg=BG2, height=48)
         header.pack(fill="x")
         header.pack_propagate(False)
-
         tk.Label(header, text="⟳  MIKO-AI Updater",
                  font=("Consolas", 13, "bold"),
                  bg=BG2, fg=ACCENT).pack(side="left", padx=16, pady=12)
-
         self.status_label = tk.Label(header, text="● Online",
                                      font=("Consolas", 10),
                                      bg=BG2, fg=GREEN)
         self.status_label.pack(side="right", padx=16)
-
         self.log = scrolledtext.ScrolledText(
             self.root,
             font=("Consolas", 10),
@@ -58,18 +54,15 @@ class UpdaterWindow:
             wrap="word"
         )
         self.log.pack(fill="both", expand=True, padx=0, pady=0)
-
         self.log.tag_config("info",    foreground=TEXT)
         self.log.tag_config("success", foreground=GREEN)
         self.log.tag_config("warning", foreground=YELLOW)
         self.log.tag_config("error",   foreground=RED)
         self.log.tag_config("dim",     foreground=TEXT_DIM)
         self.log.tag_config("accent",  foreground=ACCENT)
-
         prog_frame = tk.Frame(self.root, bg=BG2, height=32)
         prog_frame.pack(fill="x")
         prog_frame.pack_propagate(False)
-
         self.progress_bar = tk.Canvas(prog_frame, bg=BG2,
                                       height=4, highlightthickness=0)
         self.progress_bar.pack(fill="x", pady=14, padx=16)
@@ -149,34 +142,35 @@ class UpdaterWindow:
             return False
 
     def update_loop(self):
-        while True:
-            self.log_print("Check for updates...", "dim")
-            remote = self.get_remote_sha()
-            local  = self.get_local_sha()
+        self.log_print("Check for updates...", "dim")
+        remote = self.get_remote_sha()
+        local  = self.get_local_sha()
 
-            if remote is None:
-                self.log_print("Retry in 20s. If you are the dev, check 'updater_ui.py' or verify repo/user/branch.", "warning")
-            elif remote == local:
-                self.log_print(f"No updates. (SHA: {remote[:7]})", "success")
-                self.root.after(7000, self.root.destroy)
-                return
-            else:
-                self.log_print(f"New commit detected! ({remote[:7]})", "warning")
-                self.root.after(0, self.start_progress)
-                ok = self.pull_updates()
-                if ok:
-                    self.save_sha(remote)
-                    self.log_print("Update successful ✓", "success")
-                    self.root.after(0, lambda: self.stop_progress(True))
-                    time.sleep(2)
-                    self.log_print("Reboot of MIKO-AI...", "accent")
-                    time.sleep(1)
-                    os.execv(sys.executable, [sys.executable] + sys.argv + ["--skip-boot"])
-                else:
-                    self.log_print("Update failure.", "error")
-                    self.root.after(0, lambda: self.stop_progress(False))
+        if remote is None:
+            self.log_print("Cannot reach GitHub. Skipping update.", "warning")
+            self.root.after(5000, self.root.destroy)
+            return
 
-            time.sleep(CHECK_INTERVAL)
+        if remote == local:
+            self.log_print(f"No updates. (SHA: {remote[:7]})", "success")
+            self.root.after(3000, self.root.destroy)
+            return
+
+        self.log_print(f"New commit detected! ({remote[:7]})", "warning")
+        self.root.after(0, self.start_progress)
+        ok = self.pull_updates()
+        if ok:
+            self.save_sha(remote)
+            self.log_print("Update successful ✓", "success")
+            self.root.after(0, lambda: self.stop_progress(True))
+            time.sleep(2)
+            self.log_print("Reboot of MIKO-AI...", "accent")
+            time.sleep(1)
+            os.execv(sys.executable, [sys.executable] + sys.argv + ["--skip-boot"])
+        else:
+            self.log_print("Update failure.", "error")
+            self.root.after(0, lambda: self.stop_progress(False))
+            self.root.after(10000, self.root.destroy)
 
     def run(self):
         self.log_print("MIKO-AI Updater started.", "accent")
