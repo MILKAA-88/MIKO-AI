@@ -7,7 +7,7 @@ def show_boot_screen():
     root.minsize(480, 360)
     root.config(background="#000000")
 
-    label_title = Label(root, text="MIKO AI", font=("Open Sans", 50), fg="white", bg="orange")
+    label_title = Label(root, text="MIKO AI", font=("Open Sans", 20), fg="white", bg="black")
     label_title.pack(expand=True)
 
     def next1():
@@ -30,7 +30,6 @@ def show_boot_screen():
     root.after(3000,  next2)
     root.after(5000,  next3)
     root.after(7000,  next4)
-    root.after(9000,  next5)
     root.after(10000, next6)
     root.after(12000, next7)
 
