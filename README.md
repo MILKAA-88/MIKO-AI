@@ -15,4 +15,8 @@ List of tools that MIKO AI uses (Thanks btw):
 - DateTime to manipulate dates and times - [datetime](https://docs.python.org/3/library/datetime.html) — Python Software Foundation (PSF).
 - Request  For GitHub API calls - [requests](https://github.com/psf/requests).
 
+- yt-dlp 
+- Colorthief 
+
 More information in the future.
+

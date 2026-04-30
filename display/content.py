@@ -8,6 +8,7 @@ from stt.stt import record_until_silence, transcribe_audio, text_to_speech
 videos = ["video/Miko-ai1.mp4", "video/Miko-ai2-1.mp4", "video/Miko-ai2-2.mp4"]
 index = 0
 
+
 def show_content(shutdown_event=None):
     global index
 
