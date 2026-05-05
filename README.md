@@ -10,13 +10,11 @@ List of tools that MIKO AI uses (Thanks btw):
 
 - mpv: Open-source media player installed for compatibility with certain audio libraries (https://mpv.io/).
 
-- Tkinter for update permanent - [Tkinter](https://docs.python.org/3/library/tkinter.html) — Python Software Foundation (PSF).
+- Tkinter - [Tkinter](https://docs.python.org/3/library/tkinter.html) — Python Software Foundation (PSF).
 
 - DateTime to manipulate dates and times - [datetime](https://docs.python.org/3/library/datetime.html) — Python Software Foundation (PSF).
+- 
 - Request  For GitHub API calls - [requests](https://github.com/psf/requests).
 
-- yt-dlp 
-- Colorthief 
-
-More information in the future.
+More news in the future.
 
