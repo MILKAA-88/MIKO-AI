@@ -1,4 +1,4 @@
-iList of tools that MIKO AI uses (Thanks btw): 
+List of tools that MIKO AI uses (Thanks btw): 
 
 - Whisper for voice transcription (https://openai.com/fr-FR/index/whisper/ or https://github.com/openai/whisper).
 
