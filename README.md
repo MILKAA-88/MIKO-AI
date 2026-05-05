@@ -6,15 +6,14 @@ List of tools that MIKO AI uses (Thanks btw):
 
 - The LLM is TinyLlama-1.1B-Chat-v1.0 (https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0).
 
-- gTTS (Google Text-to-Speech) — For voices (https://github.com/pndurette/gTTS).
+- gTTS (Google Text-to-Speech) — For Text-to-Speech - (https://github.com/pndurette/gTTS).
 
-- mpv: Open-source media player installed for compatibility with certain audio libraries (https://mpv.io/).
+- mpv - Open-source media player installed for compatibility with certain audio libraries - (https://mpv.io/).
 
 - Tkinter - [Tkinter](https://docs.python.org/3/library/tkinter.html) — Python Software Foundation (PSF).
 
 - DateTime to manipulate dates and times - [datetime](https://docs.python.org/3/library/datetime.html) — Python Software Foundation (PSF).
   
-- Request  For GitHub API calls - [requests](https://github.com/psf/requests).
+- Requests for GitHub API calls - [requests](https://github.com/psf/requests).
 
-More news in the future.
-
+This project is still under development.
