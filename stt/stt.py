@@ -15,7 +15,7 @@ SILENCE_LIMIT = 7
 SILENCE_THRESHOLD = 500
 
 
-model = whisper.load_model("small")
+model = whisper.load_model("tiny")
 
 
 def record_until_silence():

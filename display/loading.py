@@ -16,7 +16,7 @@ ACCENT  = "#000000"
 
 MODULES = [
     "cv2", "PIL", "requests", "numpy", "deepface",
-    "gtts", "whisper", "transformers", "pyaudio", "pygame",
+    "gtts", "whisper", "pyaudio", "pygame", "groq", "dotenv",
 ]
 
 PIP_NAMES = {
@@ -27,9 +27,10 @@ PIP_NAMES = {
     "deepface": "deepface",
     "gtts": "gTTS",
     "whisper": "openai-whisper",
-    "transformers": "transformers",
     "pyaudio": "pyaudio",
     "pygame": "pygame",
+    "groq": "groq",
+    "dotenv": "python-dotenv",
 }
 
 class LoadingWindow:
@@ -56,10 +57,10 @@ class LoadingWindow:
         )
         self.log.pack(fill="both", expand=True, padx=60)
         self.log.tag_config("success", foreground=GREEN)
-        self.log.tag_config("error", foreground=RED)
+        self.log.tag_config("error",   foreground=RED)
         self.log.tag_config("warning", foreground=YELLOW)
-        self.log.tag_config("dim", foreground=DIM)
-        self.log.tag_config("info", foreground=TEXT)
+        self.log.tag_config("dim",     foreground=DIM)
+        self.log.tag_config("info",    foreground=TEXT)
         tk.Frame(self.root, bg="#e0e0e0", height=1).pack(fill="x", padx=60, pady=20)
         self.progress_bar = tk.Canvas(self.root, bg=BG, height=4, highlightthickness=0)
         self.progress_bar.pack(fill="x", padx=60)
@@ -69,17 +70,21 @@ class LoadingWindow:
 
     def log_print(self, message: str, level: str = "info"):
         ts = datetime.now().strftime("%H:%M:%S")
-        self.log.config(state="normal")
-        self.log.insert("end", f"[{ts}] {message}\n", level)
-        self.log.see("end")
-        self.log.config(state="disabled")
+        def _insert():
+            self.log.config(state="normal")
+            self.log.insert("end", f"[{ts}] {message}\n", level)
+            self.log.see("end")
+            self.log.config(state="disabled")
+        self.root.after(0, _insert)
 
     def set_progress(self, value: float):
-        w = self.progress_bar.winfo_width()
-        self.progress_bar.delete("all")
-        self.progress_bar.create_rectangle(0, 0, w, 4, fill="#e0e0e0", outline="")
-        self.progress_bar.create_rectangle(0, 0, int(w * value), 4, fill=ACCENT, outline="")
-        self.percent_label.config(text=f"{int(value * 100)}%")
+        def _update():
+            w = self.progress_bar.winfo_width()
+            self.progress_bar.delete("all")
+            self.progress_bar.create_rectangle(0, 0, w, 4, fill="#e0e0e0", outline="")
+            self.progress_bar.create_rectangle(0, 0, int(w * value), 4, fill=ACCENT, outline="")
+            self.percent_label.config(text=f"{int(value * 100)}%")
+        self.root.after(0, _update)
 
     def check_and_install(self, module: str) -> bool:
         pip_name = PIP_NAMES.get(module, module)
@@ -116,33 +121,40 @@ class LoadingWindow:
 
     def _load_thread(self):
         self.log_print("Starting system...", "dim")
-        total = len(MODULES)
+        total   = len(MODULES)
         success = 0
 
         for i, module in enumerate(MODULES):
             if self.check_and_install(module):
                 success += 1
-            progress = (i + 1) / total
-            self.root.after(0, lambda p=progress: self.set_progress(p))
+            self.set_progress((i + 1) / total)
 
         if success == total:
-            self.log_print("Downloading LLM model (TinyLlama)...", "warning")
+            self.log_print("Checking the Groq API Key...", "warning")
             try:
-                from transformers import AutoModelForCausalLM, AutoTokenizer
-                model_name = "TinyLlama/TinyLlama-1.1B-Chat-v1.0"
-                self.log_print("Downloading tokenizer...", "dim")
-                AutoTokenizer.from_pretrained(model_name)
-                self.log_print("Downloading model (this may take a while)...", "dim")
-                AutoModelForCausalLM.from_pretrained(model_name)
-                self.log_print("LLM ready ✓", "success")
-                self.log_print("All modules are ready/installed, bye!", "success")
-                self.root.after(5000, self.root.destroy)  
+                from groq import Groq
+                from dotenv import load_dotenv
+                import os
+                load_dotenv()
+                api_key = os.getenv("GROQ_API_KEY")
+                if not api_key:
+                    self.log_print("GROQ_API_KEY missing from the .env file ✗", "error")
+                    self.root.after(15000, self.root.destroy)
+                    return
+                client = Groq(api_key=api_key)
+                client.chat.completions.create(
+                    model="llama-3.3-70b-versatile",
+                    messages=[{"role": "user", "content": "ping"}],
+                    max_tokens=1
+                )
+                self.log_print("Groq API OK ✓", "success")
+                self.root.after(3000, self.root.destroy)
             except Exception as e:
-                self.log_print(f"LLM download failed: {e}", "error")
-                self.root.after(15000, self.root.destroy)  
+                self.log_print(f"Groq API failed: {e}", "error")
+                self.root.after(15000, self.root.destroy)
         else:
             self.log_print(f"{total - success} module(s) failed. Contact the admin.", "error")
-            self.root.after(15000, self.root.destroy)  
+            self.root.after(15000, self.root.destroy)
 
     def run(self):
         threading.Thread(target=self._load_thread, daemon=True).start()
@@ -151,7 +163,6 @@ class LoadingWindow:
 
 def show_loading():
     LoadingWindow().run()
-
 
 if __name__ == "__main__":
     show_loading()

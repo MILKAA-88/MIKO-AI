@@ -1,14 +1,14 @@
 List of tools that MIKO AI uses (Thanks btw): 
 
-- Whisper for voice transcription (https://openai.com/fr-FR/index/whisper/ or https://github.com/openai/whisper).
+- Whisper for [voice transcription](https://openai.com/fr-FR/index/whisper/).
 
-- DeepFace for facial recognition (https://github.com/serengil/deepface.git).
+- DeepFace for [facial recognition](https://github.com/serengil/deepface.git).
 
-- The LLM is TinyLlama-1.1B-Chat-v1.0 (https://huggingface.co/TinyLlama/TinyLlama-1.1B-Chat-v1.0).
+- The LLM is LLaMA 3.3 70B [Groq](https://groq.com/).
 
-- gTTS (Google Text-to-Speech) — For Text-to-Speech - (https://github.com/pndurette/gTTS).
+- gTTS (Google Text-to-Speech) — [For Text-to-Speech](https://github.com/pndurette/gTTS).
 
-- mpv - Open-source media player installed for compatibility with certain audio libraries - (https://mpv.io/).
+- mpv - Open-source media player installed for compatibility with certain audio libraries - [mpv](https://mpv.io/).
 
 - Tkinter - [Tkinter](https://docs.python.org/3/library/tkinter.html) — Python Software Foundation (PSF).
 
