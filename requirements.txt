@@ -1,0 +1,12 @@
+groq 
+opencv-python
+Pillow
+requests
+numpy
+deepface
+gTTS
+openai-whisper
+pyaudio
+pygame
+python-dotenv
+tensorflow
