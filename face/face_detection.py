@@ -6,14 +6,14 @@ import cv2
 from deepface import DeepFace
 import time
 
-CAMERA_INDEX    = 0          
+CAMERA_INDEX    = 2          
 FRAME_SKIP      = 2
 SCALE           = 0.5
 BACKEND         = "opencv"
-NO_FACE_TIMEOUT = 5
+NO_FACE_TIMEOUT = 60
 
 def start_face_detection(shutdown_event=None):
-    cap = cv2.VideoCapture(CAMERA_INDEX)
+    cap = cv2.VideoCapture(CAMERA_INDEX, cv2.CAP_DSHOW)
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 640)
     cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 480)
 
@@ -66,14 +66,14 @@ def start_face_detection(shutdown_event=None):
             cv2.putText(frame, f"No face: {remaining:.1f}s", (10, 60),
                         cv2.FONT_HERSHEY_SIMPLEX, 0.7, (0, 0, 255), 2)
             if elapsed >= NO_FACE_TIMEOUT:
-                print("No face detected for 5s, shutting down...")
+                print("No face detected, bye!")
                 if shutdown_event:
                     shutdown_event.set()
                 break
         else:
             no_face_since = None
 
-        # ── Rectangles & FPS ────────────────────────────────
+        
         for (x, y, w, h, conf) in last_faces:
             cv2.rectangle(frame, (x, y), (x + w, y + h), (0, 255, 0), 2)
             cv2.putText(frame, f"{conf:.0%}", (x, y - 8),
@@ -81,14 +81,8 @@ def start_face_detection(shutdown_event=None):
 
         cv2.putText(frame, f"FPS: {fps:.1f}", (10, 30),
                     cv2.FONT_HERSHEY_SIMPLEX, 0.9, (0, 200, 255), 2)
-        cv2.imshow("MIKO-AI | Detection face", frame)
-
-        if cv2.waitKey(1) & 0xFF == ord('q'):
-            break
 
     cap.release()
-    cv2.destroyAllWindows()
 
-# Test standalone
 if __name__ == "__main__":
     start_face_detection()

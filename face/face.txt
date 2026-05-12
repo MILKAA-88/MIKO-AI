@@ -1,0 +1,6 @@
+Hello dear users, in the "face-detection.py" 
+there is a feature that closes all the MIKO AI programs
+if for a period of time (10 seconds) no face is detected. This feature allows
+to protect the battery against futile discharge. But, if an error is present,
+please go to: Menu => Settings => Face Detection: Off/On. And make a pull request or contact me
+via Discord please (Discord: milka330_4722).  
