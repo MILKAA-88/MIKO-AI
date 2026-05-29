@@ -1,19 +1,19 @@
 List of tools that MIKO AI uses (Thanks btw): 
 
-- Whisper for [voice transcription](https://openai.com/fr-FR/index/whisper/).
+- [Whisper](https://openai.com/fr-FR/index/whisper/) for voice transcription.
 
-- DeepFace for [facial recognition](https://github.com/serengil/deepface.git).
+- [DeepFace](https://github.com/serengil/deepface.git) for facial recognition.
 
 - The LLM is LLaMA 3.3 70B [Groq](https://groq.com/).
 
-- MeloTTS — [For Text-to-Speech](https://github.com/myshell-ai/MeloTTS).
+- [Edge TTS](https://github.com/rany2/edge-tts) — For Text-to-Speech.
 
-- mpv - Open-source media player installed for compatibility with certain audio libraries - [mpv](https://mpv.io/).
+- [mpv](https://mpv.io/) - Open-source media player installed for compatibility with certain audio libraries.
 
-- Tkinter - [Tkinter](https://docs.python.org/3/library/tkinter.html) — Python Software Foundation (PSF).
+- [Tkinter](https://docs.python.org/3/library/tkinter.html) — Python Software Foundation (PSF).
 
-- DateTime to manipulate dates and times - [datetime](https://docs.python.org/3/library/datetime.html) — Python Software Foundation (PSF).
+- [DateTime](https://docs.python.org/3/library/datetime.html) to manipulate dates and times - Python Software Foundation (PSF).
   
-- Requests for GitHub API calls - [requests](https://github.com/psf/requests).
+- [Requests](https://github.com/psf/requests) for GitHub API calls.
 
 This project is still under development.
