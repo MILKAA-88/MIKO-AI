@@ -61,7 +61,7 @@ def show_content():
             else:
                 cap.release()
                 index = (index + 1) % len(videos)
-                root.after(0, play_video)  # ← corrigé : planifié, pas récursif
+                root.after(0, play_video)  
 
         next_frame()
 
@@ -76,7 +76,7 @@ def show_content():
             if not text:
                 set_status("Rien entendu, veuillez réessayer.")
                 continue
-            set_status(f"Vous avez dit : {text}")
+            set_status(f"You said: {text}")
             print(f"[STT] {text}")
             set_status("MIKO réfléchit...")
             response = llm.generate_response(text)
