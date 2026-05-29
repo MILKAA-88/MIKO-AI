@@ -4,9 +4,10 @@ Pillow
 requests
 numpy
 deepface
-gTTS
 openai-whisper
 pyaudio
 pygame
 python-dotenv
-tensorflow
+psutil
+git+https://github.com/myshell-ai/MeloTTS.git
+unidic

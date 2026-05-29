@@ -5,18 +5,18 @@ import tkinter as tk
 from tkinter import scrolledtext
 from datetime import datetime
 
-BG      = "#69b4dc"
+BG      = "#20c078"
 BG2     = "#f5f5f5"
-TEXT    = "#FFFFFF"
+TEXT    = "#000000"
 DIM     = "#000000"
 GREEN   = "#1a9e5c"
 RED     = "#d93025"
-YELLOW  = "#e8a000"
+YELLOW  = "#5820d1"
 ACCENT  = "#000000"
 
 MODULES = [
     "cv2", "PIL", "requests", "numpy", "deepface",
-    "gtts", "whisper", "pyaudio", "pygame", "groq", "dotenv",
+     "edge-tts", "whisper", "pyaudio", "sounddevice", "groq", "dotenv",
 ]
 
 PIP_NAMES = {
@@ -25,12 +25,12 @@ PIP_NAMES = {
     "requests": "requests",
     "numpy": "numpy",
     "deepface": "deepface",
-    "gtts": "gTTS",
     "whisper": "openai-whisper",
     "pyaudio": "pyaudio",
-    "pygame": "pygame",
+    "sounddevice": "sounddevice",
     "groq": "groq",
     "dotenv": "python-dotenv",
+    "edge-tts": "edge"
 }
 
 class LoadingWindow:
@@ -44,14 +44,14 @@ class LoadingWindow:
 
     def _build_ui(self):
         tk.Label(self.root, text="MIKO AI",
-                 font=("Helvetica", 32, "bold"),
+                 font=("Lato", 32, "bold"),
                  bg=BG, fg=TEXT).pack(pady=(40, 4))
         tk.Label(self.root, text="Install all the modules required for MIKO AI. If any issues occur, please contact the admin.",
-                 font=("Helvetica", 10),
+                 font=("Lato", 10),
                  bg=BG, fg=DIM).pack()
         tk.Frame(self.root, bg="#e0e0e0", height=1).pack(fill="x", padx=60, pady=20)
         self.log = scrolledtext.ScrolledText(
-            self.root, font=("Helvetica", 11),
+            self.root, font=("Lato", 11),
             bg=BG2, fg=TEXT, state="disabled",
             wrap="word", bd=0, highlightthickness=0,
         )
@@ -153,7 +153,7 @@ class LoadingWindow:
                 self.log_print(f"Groq API failed: {e}", "error")
                 self.root.after(15000, self.root.destroy)
         else:
-            self.log_print(f"{total - success} module(s) failed. Contact the admin.", "error")
+            self.log_print(f"{total - success} module(s) failed. Please contact the admin.", "error")
             self.root.after(15000, self.root.destroy)
 
     def run(self):

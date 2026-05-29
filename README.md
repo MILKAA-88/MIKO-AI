@@ -6,7 +6,7 @@ List of tools that MIKO AI uses (Thanks btw):
 
 - The LLM is LLaMA 3.3 70B [Groq](https://groq.com/).
 
-- gTTS (Google Text-to-Speech) — [For Text-to-Speech](https://github.com/pndurette/gTTS).
+- MeloTTS — [For Text-to-Speech](https://github.com/myshell-ai/MeloTTS).
 
 - mpv - Open-source media player installed for compatibility with certain audio libraries - [mpv](https://mpv.io/).
 
