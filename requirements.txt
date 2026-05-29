@@ -9,5 +9,5 @@ pyaudio
 pygame
 python-dotenv
 psutil
-git+https://github.com/myshell-ai/MeloTTS.git
 unidic
+edge-tts
