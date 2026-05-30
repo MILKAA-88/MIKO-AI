@@ -12,8 +12,10 @@ if __name__ == "__main__":
     args = sys.argv
 
     if "--step=boot" in args:
-        from display.start import show_boot_screen
-        show_boot_screen()
+        from display.check import root
+        from display.check import animate
+        root.after(5000, animate)
+        root.mainloop()
 
     elif "--step=loading" in args:
         from display.loading import show_loading

@@ -15,7 +15,7 @@ SILENCE_LIMIT = 7
 SILENCE_THRESHOLD = 500
 VOICE = "fr-FR-HenriNeural"
 
-whisper_model = whisper.load_model("base")
+whisper_model = whisper.load_model("tiny")
 
 def record_until_silence():
     audio = pyaudio.PyAudio()

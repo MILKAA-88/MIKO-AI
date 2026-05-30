@@ -14,11 +14,25 @@ face_thread = threading.Thread(target=start_face_detection, args=(shutdown_event
 face_thread.daemon = True
 face_thread.start()
 
-videos = ["video/Miko-ai1.mp4"]
+videos = [
+    "video/Miko-Ai.mp4",
+    "video/Miko-Ai-Thinking.mp4",
+    "video/Miko-Ai-Speak.mp4"
+]
+
 index = 0
+current_cap = None
+
+def set_video(nom):
+    global index, current_cap
+    if nom in videos:
+        index = videos.index(nom)
+        if current_cap is not None:
+            current_cap.release()
+            current_cap = None
 
 def show_content():
-    global index
+    global index, current_cap
     root = tk.Tk()
     root.configure(bg="black")
     root.geometry("1080x720")
@@ -33,7 +47,8 @@ def show_content():
     llm = LLM()
 
     def set_status(text):
-        root.after(0, lambda: status_label.config(text=text))
+        status_label.config(text=text)
+        root.update()
 
     def check_shutdown():
         shutdown_event.wait()
@@ -42,17 +57,23 @@ def show_content():
     threading.Thread(target=check_shutdown, daemon=True).start()
 
     def play_video():
-        global index
-        cap = cv2.VideoCapture(videos[index])
+        global index, current_cap
+        current_cap = cv2.VideoCapture(videos[index])
+        cap = current_cap
 
         def next_frame():
-            global index
+            global index, current_cap
             if shutdown_event.is_set():
                 cap.release()
                 root.after(0, root.destroy)
                 return
+            if cap != current_cap:
+                cap.release()
+                root.after(0, play_video)
+                return
             ret, frame = cap.read()
             if ret:
+                frame = cv2.resize(frame, (1080, 720))
                 frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
                 img = ImageTk.PhotoImage(Image.fromarray(frame))
                 label.config(image=img)
@@ -61,7 +82,7 @@ def show_content():
             else:
                 cap.release()
                 index = (index + 1) % len(videos)
-                root.after(0, play_video)  
+                root.after(0, play_video)
 
         next_frame()
 
@@ -79,14 +100,16 @@ def show_content():
             set_status(f"You said: {text}")
             print(f"[STT] {text}")
             set_status("MIKO réfléchit...")
+            set_video("video/Miko-Ai-Thinking.mp4")
             response = llm.generate_response(text)
             print(f"[LLM] {response}")
+            set_video("video/Miko-Ai-Speak.mp4")
             set_status(f"MIKO AI : {response}")
             audio_path = tts(response)
             play_audio(audio_path)
+            set_video("video/Miko-Ai.mp4")
 
     voice_thread = threading.Thread(target=voice_loop, name="voice_loop", daemon=True)
     voice_thread.start()
-
     play_video()
     root.mainloop()

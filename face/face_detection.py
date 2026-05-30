@@ -10,7 +10,7 @@ CAMERA_INDEX    = 2
 FRAME_SKIP      = 2
 SCALE           = 0.5
 BACKEND         = "opencv"
-NO_FACE_TIMEOUT = 60
+NO_FACE_TIMEOUT = 600
 
 def start_face_detection(shutdown_event=None):
     cap = cv2.VideoCapture(CAMERA_INDEX, cv2.CAP_DSHOW)
